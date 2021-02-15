@@ -159,6 +159,8 @@ export class HTTPTVPlatform implements DynamicPlatformPlugin {
 			const uuid = this.api.hap.uuid.generate(device.serialNumber);
 			foundUUIDs.push(uuid);
 
+			
+
 			// see if an accessory with the same uuid has already been registered and restored from
 			// the cached devices we stored in the `configureAccessory` method above
 			const existingAccessory = this.accessories.find(
@@ -193,7 +195,7 @@ export class HTTPTVPlatform implements DynamicPlatformPlugin {
 				// store a copy of the device object in the `accessory.context`
 				// the `context` property can be used to store any data about the accessory you may need
 				accessory.context.device = device;
-
+				accessory.category = this.api.hap.Categories.TELEVISION;
 				// create the accessory handler for the newly create accessory
 				// this is imported from `platformAccessory.ts`
 				new HTTPTVAccessory(this, accessory);
